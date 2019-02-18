@@ -34,5 +34,25 @@ namespace SortedKata.BusinessLogicTests
 			Assert.All(skus, sku => Assert.Contains(checkout.Basket.Keys, key => string.Equals(key, sku, StringComparison.InvariantCultureIgnoreCase)));
 			Assert.All(checkout.Basket.Keys, key => Assert.Contains(skus, sku => string.Equals(sku, key, StringComparison.InvariantCultureIgnoreCase)));
 		}
+
+		[Theory]
+		[InlineData(50, "A99")]
+		[InlineData(100, "A99", "A99")]
+		[InlineData(130, "A99", "A99", "A99")]
+		[InlineData(180, "A99", "A99", "A99", "A99")]
+		[InlineData(230, "A99", "A99", "A99", "A99", "A99")]
+		[InlineData(260, "A99", "A99", "A99", "A99", "A99", "A99")]
+		public void CheckoutTests_GetTotal_GivesTheCorrectTotal(decimal expectedTotal, params string[] skus)
+		{
+			// Arrange
+			var checkout = new Checkout();
+			skus.ToList().ForEach(checkout.Scan);
+
+			// Act
+			var actualTotal = checkout.GetTotal();
+
+			// Assert
+			Assert.Equal(expectedTotal, actualTotal);
+		}
 	}
 }

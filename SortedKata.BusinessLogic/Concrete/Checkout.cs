@@ -10,6 +10,11 @@ namespace SortedKata.BusinessLogic.Concrete
 
 		public IDictionary<string, int> Basket { get; } = new Dictionary<string, int>(StringComparer.InvariantCultureIgnoreCase);
 
+		public decimal GetTotal()
+		{
+			throw new NotImplementedException();
+		}
+
 		public void Scan(string sku)
 		{
 			Guard.Argument(() => sku).NotNull().NotEmpty().NotWhiteSpace().Matches(_itemPattern);
