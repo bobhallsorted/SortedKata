@@ -8,7 +8,7 @@ namespace SortedKata.BusinessLogic.Concrete
 	{
 		private const string _itemPattern = "^[A-Za-z][0-9]{2}$";
 
-		public IDictionary<string, int> Basket { get; } = new Dictionary<string, int>();
+		public IDictionary<string, int> Basket { get; } = new Dictionary<string, int>(StringComparer.InvariantCultureIgnoreCase);
 
 		public void Scan(string sku)
 		{
