@@ -6,7 +6,7 @@ namespace SortedKata.BusinessLogic
 	public interface ICheckout
 	{
 		IDictionary<string, int> Basket { get; }
-		decimal GetTotal();
+		Task<decimal> GetTotalAsync();
 		void Scan(string sku);
 	}
 }
